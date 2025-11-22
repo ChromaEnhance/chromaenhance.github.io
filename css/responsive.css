@@ -44,6 +44,7 @@
     .hero-buttons {
         flex-direction: column;
         gap: 15px;
+        align-items: center;
     }
 
     .btn {
@@ -68,6 +69,18 @@
 
     .service-card {
         padding: 30px 25px;
+    }
+
+    /* Reset margins des animations Lottie sur mobile */
+    #color-animation,
+    #ai-animation,
+    #fast-animation {
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .service-icon {
+        justify-content: center;
     }
 
     .pricing-tabs {
@@ -101,6 +114,14 @@
     }
 
     .footer-column {
+        text-align: center;
+    }
+
+    .footer-brand .logo {
+        justify-content: center;
+    }
+
+    .footer-brand p {
         text-align: center;
     }
 }
@@ -151,6 +172,16 @@
         font-size: 1.3em;
     }
 
+    .service-icon {
+        height: 56px;
+    }
+
+    .service-icon svg,
+    .service-icon div {
+        width: 40px;
+        height: 40px;
+    }
+
     .pricing-card {
         padding: 25px 20px;
     }
@@ -182,15 +213,6 @@
     .footer {
         padding: 40px 0 20px;
     }
-
-    .footer-brand .logo {
-        justify-content: center;
-    }
-
-    .footer-brand p {
-        text-align: center;
-        margin: 0 auto;
-    }
 }
 
 /* Small Mobile (375px and below) */
@@ -208,6 +230,16 @@
         font-size: 1.2em;
     }
 
+    .service-icon {
+        height: 48px;
+    }
+
+    .service-icon svg,
+    .service-icon div {
+        width: 36px;
+        height: 36px;
+    }
+
     .price {
         font-size: 1em;
     }
@@ -216,6 +248,10 @@
     .price-label,
     .pricing-note {
         font-size: 0.85em;
+    }
+
+    .contact-card {
+        padding: 18px 20px;
     }
 }
 
@@ -232,5 +268,31 @@
 
     .hero-subtitle {
         margin-bottom: 25px;
+    }
+}
+
+/* Fix pour très petits écrans */
+@media (max-width: 320px) {
+    .hero h1 {
+        font-size: 1.5em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .service-icon {
+        height: 44px;
+    }
+
+    .service-icon svg,
+    .service-icon div {
+        width: 32px;
+        height: 32px;
     }
 }
