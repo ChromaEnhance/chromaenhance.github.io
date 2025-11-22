@@ -1,1 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChromaEnhance - Professional Video & Image Processing</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="32" height="32" rx="8" fill="#6676ff"/>
+                    <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="white"/>
+                    <circle cx="16" cy="16" r="3" fill="white"/>
+                </svg>
+                <span>ChromaEnhance</span>
+            </a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Professional Video & Image Processing</h1>
+                <p class="hero-subtitle">Transform your content with state-of-the-art color correction and AI upscaling. Fast, precise, and confidential service.</p>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn btn-primary">View Pricing</a>
+                    <a href="lang/en.html" class="btn btn-secondary">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 10H18M10 2C12.5013 4.73835 13.9228 8.29203 14 12C13.9228 15.708 12.5013 19.2616 10 22C7.49872 19.2616 6.07725 15.708 6 12C6.07725 8.29203 7.49872 4.73835 10 2Z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-subtitle">Professional processing solutions for your creative projects</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
+                            <path d="M24 12L28 24L24 36L20 24L24 12Z" stroke="#6676ff" stroke-width="2" fill="none"/>
+                            <circle cx="24" cy="24" r="4" stroke="#6676ff" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Color Correction</h3>
+                    <p>Professional color grading to enhance the visual quality of your videos and images.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
+                            <rect x="14" y="14" width="20" height="20" stroke="#6676ff" stroke-width="2" fill="none"/>
+                            <path d="M18 18L30 30M30 18L18 30" stroke="#6676ff" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>AI Upscaling</h3>
+                    <p>Advanced AI technology to upscale and enhance resolution without quality loss.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
+                            <path d="M24 14V34M14 24H34" stroke="#6676ff" stroke-width="2"/>
+                            <circle cx="24" cy="24" r="8" stroke="#6676ff" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick turnaround time with secure delivery via private Payhip links.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing</h2>
+            <p class="section-subtitle">Transparent pricing for professional results</p>
+
+            <div class="pricing-tabs">
+                <button class="tab-btn active" data-tab="video">Video Processing</button>
+                <button class="tab-btn" data-tab="image">Image Processing</button>
+            </div>
+
+            <div class="pricing-content active" data-content="video">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Short Form</h3>
+                            <p class="pricing-duration">0 - 35 seconds</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">€14.99</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">€24.99</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">Perfect for social media content</p>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Medium Form</h3>
+                            <p class="pricing-duration">35 - 60 seconds</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">€19.99</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">€29.99</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">Ideal for YouTube & Instagram</p>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Long Form</h3>
+                            <p class="pricing-duration">60+ seconds</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">From €39.99/min</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">From €54.99/min</span>
+                            </div>
+                        </div>
+                        <p class="pricing-note">Custom quote available</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pricing-content" data-content="image">
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Single Image</h3>
+                            <p class="pricing-duration">1 image</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">€0.50</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">€1.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div class="badge">Best Value</div>
+                        <div class="pricing-header">
+                            <h3>Small Pack</h3>
+                            <p class="pricing-duration">5 images</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">€2.99</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">€4.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Large Pack</h3>
+                            <p class="pricing-duration">10 images</p>
+                        </div>
+                        <div class="pricing-body">
+                            <div class="price-item">
+                                <span class="price-label">Color Correction</span>
+                                <span class="price">€6.99</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-label">CC + Upscale</span>
+                                <span class="price">€8.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What file formats do you accept?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept MP4 and MOV for videos, and JPG, PNG, and TIFF for images.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does processing take?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Videos: 2-3 business days. Images: 24-48 hours. We also offer expedited processing for urgent projects.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide source files?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, we only deliver final rendered files. Source project files are not included.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is my content kept confidential?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. All files are stored temporarily and deleted after delivery. Your content is never shared.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to enhance your content? Contact us today</p>
+            
+            <div class="contact-info">
+                <a href="mailto:pro.fgamer768@gmail.com" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>pro.fgamer768@gmail.com</span>
+                </a>
+                
+                <a href="https://instagram.com/chromaenhance" target="_blank" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                    </svg>
+                    <span>@chromaenhance</span>
+                </a>
+                
+                <a href="https://www.tiktok.com/@chromaenhance" target="_blank" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 10.5V8.8C17.6 8.8 16.3 8.3 15.3 7.5V15.5C15.3 18.5 12.8 21 9.8 21C6.8 21 4.3 18.5 4.3 15.5C4.3 12.5 6.8 10 9.8 10V12.3C8.1 12.3 6.6 13.8 6.6 15.5C6.6 17.2 8.1 18.7 9.8 18.7C11.5 18.7 13 17.2 13 15.5V3H15.3C15.3 3.9 15.6 4.7 16.2 5.3C16.8 5.9 17.6 6.2 18.5 6.2V8.5C18.7 8.5 18.8 8.5 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>@chromaenhance</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="32" height="32" rx="8" fill="#6676ff"/>
+                            <path d="M16 8L20 16L16 24L12 16L16 8Z" fill="white"/>
+                            <circle cx="16" cy="16" r="3" fill="white"/>
+                        </svg>
+                        <span>ChromaEnhance</span>
+                    </div>
+                    <p>Professional video and image processing service</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#services">Color Correction</a>
+                        <a href="#services">AI Upscaling</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Documentation</h4>
+                        <a href="lang/en.html">English</a>
+                        <a href="lang/fr.html">Français</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChromaEnhance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
