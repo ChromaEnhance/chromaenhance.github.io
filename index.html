@@ -51,11 +51,7 @@
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
-                            <path d="M24 12L28 24L24 36L20 24L24 12Z" stroke="#6676ff" stroke-width="2" fill="none"/>
-                            <circle cx="24" cy="24" r="4" stroke="#6676ff" stroke-width="2" fill="none"/>
-                        </svg>
+                        <div id="color-animation" style="width: 85px; height: 85px;"></div>
                     </div>
                     <h3>Color Correction</h3>
                     <p>Professional color grading to enhance the visual quality of your videos and images.</p>
@@ -63,11 +59,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
-                            <rect x="14" y="14" width="20" height="20" stroke="#6676ff" stroke-width="2" fill="none"/>
-                            <path d="M18 18L30 30M30 18L18 30" stroke="#6676ff" stroke-width="2"/>
-                        </svg>
+                        <div id="ai-animation" style="width: 65px; height: 65px;"></div>
                     </div>
                     <h3>AI Upscaling</h3>
                     <p>Advanced AI technology to upscale and enhance resolution without quality loss.</p>
@@ -75,11 +67,7 @@
 
                 <div class="service-card">
                     <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="48" height="48" rx="12" fill="#6676ff" opacity="0.1"/>
-                            <path d="M24 14V34M14 24H34" stroke="#6676ff" stroke-width="2"/>
-                            <circle cx="24" cy="24" r="8" stroke="#6676ff" stroke-width="2" fill="none"/>
-                        </svg>
+                        <div id="fast-animation" style="width: 100px; height: 100px;"></div>
                     </div>
                     <h3>Fast Delivery</h3>
                     <p>Quick turnaround time with secure delivery via private Payhip links.</p>
@@ -346,5 +334,36 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+    <script>
+        // Charger l'animation Lottie pour AI Upscaling
+        const aiAnimation = lottie.loadAnimation({
+            container: document.getElementById('ai-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'assets/Animations/AI.json'
+        });
+    </script>
+    <script>
+        // Charger l'animation Lottie pour Fast Delivering
+        const fastAnimation = lottie.loadAnimation({
+            container: document.getElementById('fast-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'assets/Animations/Fast.json'
+        });
+    </script>
+    <script>
+        // Charger l'animation Lottie pour Color
+        const colorAnimation = lottie.loadAnimation({
+            container: document.getElementById('color-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'assets/Animations/Color.json'
+        });
+    </script>
 </body>
 </html>
