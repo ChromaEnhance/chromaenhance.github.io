@@ -178,7 +178,7 @@ section {
 
 #ai-animation {
     margin-left: 0px;
-        margin-top: 4px;
+    margin-top: 4px;
 }
 
 #fast-animation {
@@ -391,23 +391,26 @@ section {
     line-height: 1.6;
 }
 
-/* Contact */
+/* Contact - CORRIGÉ */
 .contact {
     background: var(--bg-dark);
 }
 
 .contact-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
 .contact-card {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
+    width: 100%;
     padding: 25px 30px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
