@@ -1,1 +1,236 @@
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 3em;
+    }
 
+    .section-title {
+        font-size: 2.2em;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+
+    .hero {
+        min-height: 70vh;
+        padding: 100px 20px 40px;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1em;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .section-subtitle {
+        font-size: 1em;
+        margin-bottom: 40px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .service-card {
+        padding: 30px 25px;
+    }
+
+    .pricing-tabs {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .tab-btn {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .pricing-card {
+        padding: 30px 25px;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .footer-column {
+        text-align: center;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    .hero {
+        padding: 90px 15px 30px;
+    }
+
+    .hero h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .hero-subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.95em;
+    }
+
+    .section-title {
+        font-size: 1.75em;
+    }
+
+    .section-subtitle {
+        font-size: 0.95em;
+        padding: 0 10px;
+    }
+
+    .service-card {
+        padding: 25px 20px;
+    }
+
+    .service-card h3 {
+        font-size: 1.3em;
+    }
+
+    .pricing-card {
+        padding: 25px 20px;
+    }
+
+    .pricing-header h3 {
+        font-size: 1.3em;
+    }
+
+    .price {
+        font-size: 1.1em;
+    }
+
+    .faq-question {
+        padding: 15px 20px;
+        font-size: 1em;
+    }
+
+    .faq-answer p {
+        padding: 0 20px 15px;
+        font-size: 0.95em;
+    }
+
+    .contact-card {
+        padding: 20px 25px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer {
+        padding: 40px 0 20px;
+    }
+
+    .footer-brand .logo {
+        justify-content: center;
+    }
+
+    .footer-brand p {
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
+/* Small Mobile (375px and below) */
+@media (max-width: 375px) {
+    .hero h1 {
+        font-size: 1.6em;
+    }
+
+    .section-title {
+        font-size: 1.6em;
+    }
+
+    .service-card h3,
+    .pricing-header h3 {
+        font-size: 1.2em;
+    }
+
+    .price {
+        font-size: 1em;
+    }
+
+    .pricing-duration,
+    .price-label,
+    .pricing-note {
+        font-size: 0.85em;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 100px 20px 30px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 25px;
+    }
+}
