@@ -27,16 +27,64 @@
             background: var(--bg-dark);
             overflow-x: hidden;
         }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, #c41e3a 0%, #8b1328 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            animation: slideDown 0.5s ease-out;
+            font-size: 0.95em;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .promo-banner strong {
+            color: #ffd700;
+            font-weight: 700;
+        }
+
+        .promo-banner .close-banner {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.7;
+            line-height: 1;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+        }
+
+        .promo-banner .close-banner:hover {
+            opacity: 1;
+        }
         
         .nav {
             position: fixed;
-            top: 0;
+            top: 44px;
+            left: 0;
             width: 100%;
             background: rgba(10, 10, 15, 0.95);
             backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
             padding: 15px 0;
             z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s;
         }
         
         .nav-content {
@@ -468,6 +516,9 @@
     </style>
 </head>
 <body>
+    <div class="promo-banner" id="promoBanner">
+        🎄 <strong>CHRISTMAS LAUNCH OFFER</strong>: First rendering FREE with code <strong>CHRISTMAS2025</strong> 🎁
+    </div>
     <nav class="nav">
         <div class="nav-content">
             <a href="../index.html" class="nav-logo">🎬 ChromaEnhance</a>
