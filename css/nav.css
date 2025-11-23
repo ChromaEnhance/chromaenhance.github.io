@@ -73,6 +73,73 @@
     width: 100%;
 }
 
+/* Promo Banner */
+.promo-banner {
+    background: linear-gradient(135deg, #c41e3a 0%, #8b1328 100%);
+    color: white;
+    text-align: center;
+    padding: 12px 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    animation: slideDown 0.5s ease-out;
+    font-size: 0.95em;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.promo-banner strong {
+    color: #ffd700;
+    font-weight: 700;
+}
+
+.promo-banner .close-banner {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+
+.promo-banner .close-banner:hover {
+    opacity: 1;
+}
+
+/* Ajuster la navbar pour être sous la bannière */
+.navbar {
+    top: 44px; /* Hauteur de la bannière */
+}
+
+/* Ajuster le hero pour compenser */
+.hero {
+    padding-top: 164px; /* 120px + 44px de bannière */
+}
+
+@media (max-width: 768px) {
+    .promo-banner {
+        font-size: 0.85em;
+        padding: 10px 40px 10px 20px;
+    }
+    
+    .nav-links {
+        top: 109px; /* 65px navbar + 44px bannière */
+    }
+}
+
 /* Mobile Menu */
 .menu-toggle {
     display: none;
