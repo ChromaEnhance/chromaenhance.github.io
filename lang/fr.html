@@ -4,524 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChromaEnhance - Traitement Vidéo & Image</title>
-    <style>
-        :root {
-            --primary: #6676ff;
-            --bg-dark: #0a0a0f;
-            --bg-card: #16213e;
-            --text-light: #e4e4e4;
-            --text-gray: #8a8a8a;
-            --border-color: #1f2d4d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-light);
-            background: var(--bg-dark);
-            overflow-x: hidden;
-        }
 
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, #c41e3a 0%, #8b1328 100%);
-            color: white;
-            text-align: center;
-            padding: 12px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-            animation: slideDown 0.5s ease-out;
-            font-size: 0.95em;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .promo-banner strong {
-            color: #ffd700;
-            font-weight: 700;
-        }
-
-        .promo-banner .close-banner {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0.7;
-            line-height: 1;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-        }
-
-        .promo-banner .close-banner:hover {
-            opacity: 1;
-        }
-        
-        .nav {
-            position: fixed;
-            top: 44px;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-        
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-            background: rgba(102, 118, 255, 0.1);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px 60px;
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
-        
-        .hero-logo {
-            font-size: 4em;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(102, 118, 255, 0.3));
-        }
-        
-        h1 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-            letter-spacing: -1px;
-        }
-        
-        .subtitle {
-            font-size: 1.15em;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            font-weight: 400;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        h2 {
-            color: white;
-            margin-top: 80px;
-            margin-bottom: 30px;
-            font-size: 2em;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        h2:first-of-type {
-            margin-top: 60px;
-        }
-        
-        .section {
-            margin: 60px 0;
-        }
-        
-        .section > p {
-            color: var(--text-light);
-            font-size: 1em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .process-steps {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            margin: 30px 0;
-            border: 1px solid var(--border-color);
-        }
-        
-        .process-steps strong {
-            color: white;
-            font-size: 1.05em;
-        }
-        
-        .process-steps ol {
-            margin-left: 25px;
-            margin-top: 15px;
-        }
-        
-        .process-steps li {
-            margin: 12px 0;
-            font-size: 0.95em;
-            color: var(--text-light);
-        }
-        
-        .important {
-            background: rgba(255, 193, 7, 0.05);
-            border-left: 3px solid #ffc107;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
-        .important strong {
-            color: #ffc107;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 18px 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        
-        td {
-            padding: 18px 15px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-        
-        tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .price {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1em;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(102, 118, 255, 0.15);
-        }
-        
-        .feature-card h3 {
-            color: white;
-            margin-bottom: 12px;
-            font-size: 1.15em;
-            font-weight: 600;
-        }
-        
-        .feature-card p {
-            color: var(--text-light);
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
-        
-        .faq-item {
-            margin: 20px 0;
-            padding: 25px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .faq-item strong {
-            color: white;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1em;
-            font-weight: 600;
-        }
-        
-        .faq-item p {
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-        
-        .contact-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: white;
-            padding: 50px 30px;
-            text-align: center;
-            margin-top: 80px;
-            border-radius: 12px;
-        }
-        
-        .contact-section h2 {
-            margin-top: 0;
-            color: white;
-            margin-bottom: 25px;
-        }
-        
-        .contact-section p {
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-        
-        .contact-section a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-        }
-        
-        .contact-section a:hover {
-            opacity: 0.8;
-        }
-        
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        @media (max-width: 1024px) {
-            .container {
-                padding: 90px 20px 50px;
-            }
-            
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            h2 {
-                font-size: 1.8em;
-                margin-top: 60px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-content {
-                padding: 0 15px;
-            }
-            
-            .nav-logo {
-                font-size: 1.2em;
-            }
-            
-            .nav-links {
-                gap: 8px;
-            }
-            
-            .nav-links a {
-                padding: 6px 12px;
-                font-size: 0.85em;
-            }
-            
-            .container {
-                padding: 80px 15px 40px;
-            }
-            
-            .hero-section {
-                padding: 40px 15px 30px;
-            }
-            
-            .hero-logo {
-                font-size: 3.5em;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .subtitle {
-                font-size: 1em;
-            }
-            
-            h2 {
-                font-size: 1.6em;
-                margin-top: 50px;
-            }
-            
-            table {
-                font-size: 0.85em;
-                display: block;
-                overflow-x: auto;
-            }
-            
-            th, td {
-                padding: 12px 10px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .process-steps {
-                padding: 20px;
-            }
-            
-            .feature-card {
-                padding: 25px;
-            }
-            
-            .faq-item {
-                padding: 20px;
-            }
-            
-            .contact-section {
-                padding: 40px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-links a {
-                padding: 5px 10px;
-                font-size: 0.8em;
-            }
-            
-            .container {
-                padding: 75px 12px 30px;
-            }
-            
-            .hero-logo {
-                font-size: 3em;
-            }
-            
-            h1 {
-                font-size: 1.75em;
-            }
-            
-            .subtitle {
-                font-size: 0.95em;
-            }
-            
-            h2 {
-                font-size: 1.4em;
-                margin-top: 40px;
-            }
-            
-            .process-steps {
-                padding: 18px;
-            }
-            
-            .process-steps li {
-                font-size: 0.9em;
-            }
-            
-            .feature-card {
-                padding: 20px;
-            }
-            
-            .faq-item {
-                padding: 18px;
-            }
-            
-            .contact-section {
-                padding: 35px 18px;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        
-        @media (max-width: 375px) {
-            h1 {
-                font-size: 1.6em;
-            }
-            
-            h2 {
-                font-size: 1.3em;
-            }
-            
-            table {
-                font-size: 0.8em;
-            }
-            
-            .price {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="promo-banner" id="promoBanner">
-        🎄 <strong>CHRISTMAS LAUNCH OFFER:</strong> First rendering FREE with code <strong>CHRISTMAS2025</strong> 🎁
+        🎄 <strong>OFFRE DE LANCEMENT DE NOËL</strong> : Premier rendu GRATUIT avec le code <strong>CHRISTMAS2025</strong> 🎁
     </div>
     <nav class="nav">
         <div class="nav-content">
-            <a href="../index.html" class="nav-logo">🎬 ChromaEnhance</a>
+            <a href="../index.html" class="nav-logo">
+                <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="24" height="24" style="display: inline-block; vertical-align: middle;"></object>
+                ChromaEnhance
+            </a>
             <div class="nav-links">
                 <a href="../index.html">🏠 Accueil</a>
                 <a href="en.html">🇬🇧 English</a>
@@ -531,35 +26,37 @@
 
     <div class="container">
         <section class="hero-section">
-            <div class="hero-logo">🎬</div>
+            <div class="hero-logo">
+                <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="128" height="128"></object>
+            </div>
             <h1>ChromaEnhance</h1>
-            <p class="subtitle">Optimisation professionnelle de vos vidéos et images<br>Service rapide, précis et conforme aux standards professionnels</p>
+            <p class="subtitle">Optimisation professionnelle de vos vidéos et images<br>Service rapide et précis conforme aux standards professionnels</p>
         </section>
 
         <section class="section">
-            <h2>📋 Présentation</h2>
-            <p>Vous disposez déjà d'un montage vidéo ou d'images prêtes à l'emploi, mais souhaitez un rendu plus net, plus coloré et plus professionnel ? Notre service de traitement haut de gamme améliore la qualité, la fluidité et le rendu visuel de vos fichiers grâce à des outils professionnels de pointe.</p>
+            <h2>📋 Aperçu</h2>
+            <p>Vous avez déjà un montage vidéo finalisé ou des images prêtes à l’emploi, mais souhaitez un rendu plus net, plus coloré et plus professionnel ? Notre service premium améliore la qualité, la fluidité et le rendu visuel de vos fichiers grâce à des outils professionnels de pointe.</p>
             
             <div class="process-steps">
                 <strong>Processus :</strong>
                 <ol>
-                    <li>Vous fournissez vos fichiers (montage terminé ou images prêtes)</li>
-                    <li>Nous appliquons le traitement sélectionné</li>
+                    <li>Vous fournissez vos fichiers (montage final ou images prêtes)</li>
+                    <li>Nous appliquons le traitement choisi</li>
                     <li>Vous recevez un fichier final optimisé, prêt à être diffusé</li>
                 </ol>
             </div>
             
             <div class="important">
-                <strong>⚠️ Important :</strong> nous n'effectuons aucune modification du montage ou du contenu — uniquement une amélioration technique et visuelle.
+                <strong>⚠️ Important :</strong> Aucun changement n’est effectué sur le montage ou le contenu — uniquement une amélioration technique et visuelle.
             </div>
         </section>
 
         <section class="section">
             <h2>⚙️ Fonctionnement</h2>
             <ol style="margin-left: 25px; color: var(--text-light);">
-                <li style="margin: 12px 0;">Transmission de vos fichiers (vidéo : MP4/MOV / image : JPG/PNG/TIFF)</li>
-                <li style="margin: 12px 0;">Application du traitement choisi : <strong>CC</strong> (Color Correction seule) ou <strong>CC + Upscale</strong> (Color Correction + Amélioration IA)</li>
-                <li style="margin: 12px 0;">Livraison du rendu final via un lien privé et sécurisé Payhip</li>
+                <li style="margin: 12px 0;">Envoi de vos fichiers (vidéo : MP4/MOV / image : JPG/PNG/TIFF)</li>
+                <li style="margin: 12px 0;">Application du traitement sélectionné : <strong>CC</strong> (Color Correction uniquement) ou <strong>CC + Upscale</strong> (Color Correction + amélioration IA)</li>
+                <li style="margin: 12px 0;">Livraison du rendu final via un lien Payhip privé et sécurisé</li>
             </ol>
         </section>
 
@@ -585,13 +82,13 @@
                         <td>35 – 60 secondes</td>
                         <td class="price">14,99 €</td>
                         <td class="price">19,99 €</td>
-                        <td>Convient aux edits et formats moyens</td>
+                        <td>Adapté aux edits et formats moyens</td>
                     </tr>
                     <tr>
                         <td>60 secondes et +</td>
                         <td class="price">Sur devis<br>(à partir de 39,99 €/min)</td>
                         <td class="price">Sur devis<br>(à partir de 54,99 €/min)</td>
-                        <td>Adapté aux projets longs et personnalisés</td>
+                        <td>Parfait pour projets longs et personnalisés</td>
                     </tr>
                 </tbody>
             </table>
@@ -611,11 +108,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>CC</strong> (CC seule)</td>
+                        <td><strong>CC</strong> (CC uniquement)</td>
                         <td class="price">0,50 €</td>
                         <td class="price">2,99 €</td>
                         <td class="price">6,99 €</td>
-                        <td>Correction colorimétrique et amélioration de base</td>
+                        <td>Correction colorimétrique et amélioration basique</td>
                     </tr>
                     <tr>
                         <td><strong>CC + Upscale</strong></td>
@@ -629,16 +126,16 @@
         </section>
 
         <section class="section">
-            <h2>⏱️ Options et délais</h2>
+            <h2>⏱️ Options et Délais</h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>📁 Formats de sortie</h3>
-                    <p>MP4 (web) / MOV (haute qualité) pour les vidéos<br>
-                    JPG/PNG/TIFF pour les images</p>
+                    <p>MP4 (web) / MOV (haute qualité) pour vidéos<br>
+                    JPG/PNG/TIFF pour images</p>
                 </div>
                 <div class="feature-card">
-                    <h3>👁️ Prévisualisation gratuite</h3>
-                    <p>Extrait ou image avec watermark avant validation</p>
+                    <h3>👁️ Aperçu gratuit</h3>
+                    <p>Extrait ou image filigranée avant validation</p>
                 </div>
                 <div class="feature-card">
                     <h3>⏰ Délais moyens</h3>
@@ -650,40 +147,105 @@
 
         <section class="section">
             <h2>🔒 Commande & Sécurité</h2>
-            <p>Les fichiers finaux sont remis via <strong>lien Payhip sécurisé</strong>, unique pour chaque commande. Vos fichiers sources demeurent confidentiels et ne sont jamais partagés. Chaque rendu est stocké temporairement puis supprimé après livraison pour garantir la confidentialité.</p>
+            <p>Les fichiers finaux sont livrés via un <strong>lien Payhip sécurisé</strong>, unique pour chaque commande. Vos fichiers sources restent confidentiels et ne sont jamais partagés. Chaque rendu est stocké temporairement puis supprimé après livraison pour garantir la confidentialité.</p>
         </section>
 
-        <section class="section">
-            <h2>❓ FAQ</h2>
-            <div class="faq-item">
-                <strong>Puis-je modifier moi-même la vidéo ou l'image après traitement ?</strong>
-                <p>Non. Seuls les fichiers rendus finaux sont livrés.</p>
-            </div>
+        <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Questions Fréquentes</h2>
             
-            <div class="faq-item">
-                <strong>Fournissez-vous les fichiers de projet ?</strong>
-                <p>Non. Les projets sources ne sont pas inclus, uniquement les rendus finaux.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Quels formats dois-je vous envoyer ?</strong>
-                <p>Vidéos : MP4 / MOV — Images : JPG / PNG / TIFF</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Pourquoi ces tarifs ?</strong>
-                <p>Les prix reflètent l'expertise, le temps de traitement et l'utilisation d'outils professionnels sous licence de dernière génération.</p>
-            </div>
-        </section>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Quels formats de fichiers acceptez-vous ?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous acceptons MP4 et MOV pour les vidéos, et JPG, PNG et TIFF pour les images.</p>
+                    </div>
+                </div>
 
-        <section class="contact-section">
-            <h2>📧 Contact</h2>
-            <p><strong>Email :</strong> <a href="mailto:chroma.enhance@outlook.com">chroma.enhance@outlook.com</a></p>
-            <div class="social-links">
-                <a href="http://instagram.com/chromaenhance" target="_blank">📸 Instagram: @chromaenhance</a>
-                <a href="https://www.tiktok.com/@chromaenhance" target="_blank">🎵 TikTok: @chromaenhance</a>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Combien de temps prend le traitement ?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Vidéos : 2–3 jours ouvrés. Images : 24–48 heures. Un service urgent est également disponible.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Fournissez-vous les fichiers source ?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Non, seuls les fichiers rendus finaux sont fournis. Les fichiers de projet source ne sont pas inclus.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Mon contenu est-il gardé confidentiel ?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolument. Tous les fichiers sont stockés temporairement puis supprimés après livraison. Votre contenu n'est jamais partagé.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo">
+                            <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="128" height="128"></object>
+                        </div>
+                        <span>ChromaEnhance</span>
+                    </div>
+                    <p>Professional video and image processing service</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#services">Color Correction</a>
+                        <a href="#services">AI Upscaling</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Documentation</h4>
+                        <a href="en.html">English</a>
+                        <a href="fr.html">Français</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChromaEnhance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
 </body>
 </html>
