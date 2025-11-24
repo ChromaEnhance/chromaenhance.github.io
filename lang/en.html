@@ -4,524 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChromaEnhance - Video & Image Processing</title>
-    <style>
-        :root {
-            --primary: #6676ff;
-            --bg-dark: #0a0a0f;
-            --bg-card: #16213e;
-            --text-light: #e4e4e4;
-            --text-gray: #8a8a8a;
-            --border-color: #1f2d4d;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-light);
-            background: var(--bg-dark);
-            overflow-x: hidden;
-        }
 
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, #c41e3a 0%, #8b1328 100%);
-            color: white;
-            text-align: center;
-            padding: 12px 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-            animation: slideDown 0.5s ease-out;
-            font-size: 0.95em;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
-
-        .promo-banner strong {
-            color: #ffd700;
-            font-weight: 700;
-        }
-
-        .promo-banner .close-banner {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0.7;
-            line-height: 1;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-        }
-
-        .promo-banner .close-banner:hover {
-            opacity: 1;
-        }
-        
-        .nav {
-            position: fixed;
-            top: 44px;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            padding: 15px 0;
-            z-index: 1000;
-            transition: all 0.3s;
-        }
-        
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo {
-            font-size: 1.4em;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-        
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary);
-            background: rgba(102, 118, 255, 0.1);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px 60px;
-        }
-        
-        .hero-section {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
-        
-        .hero-logo {
-            font-size: 4em;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 20px rgba(102, 118, 255, 0.3));
-        }
-        
-        h1 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-            letter-spacing: -1px;
-        }
-        
-        .subtitle {
-            font-size: 1.15em;
-            color: var(--text-gray);
-            margin-bottom: 20px;
-            font-weight: 400;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        h2 {
-            color: white;
-            margin-top: 80px;
-            margin-bottom: 30px;
-            font-size: 2em;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        h2:first-of-type {
-            margin-top: 60px;
-        }
-        
-        .section {
-            margin: 60px 0;
-        }
-        
-        .section > p {
-            color: var(--text-light);
-            font-size: 1em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .process-steps {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            margin: 30px 0;
-            border: 1px solid var(--border-color);
-        }
-        
-        .process-steps strong {
-            color: white;
-            font-size: 1.05em;
-        }
-        
-        .process-steps ol {
-            margin-left: 25px;
-            margin-top: 15px;
-        }
-        
-        .process-steps li {
-            margin: 12px 0;
-            font-size: 0.95em;
-            color: var(--text-light);
-        }
-        
-        .important {
-            background: rgba(255, 193, 7, 0.05);
-            border-left: 3px solid #ffc107;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        
-        .important strong {
-            color: #ffc107;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: var(--bg-card);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        
-        th {
-            background: var(--primary);
-            color: white;
-            padding: 18px 15px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9em;
-        }
-        
-        td {
-            padding: 18px 15px;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-        
-        tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .price {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.1em;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
-        }
-        
-        .feature-card {
-            background: var(--bg-card);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(102, 118, 255, 0.15);
-        }
-        
-        .feature-card h3 {
-            color: white;
-            margin-bottom: 12px;
-            font-size: 1.15em;
-            font-weight: 600;
-        }
-        
-        .feature-card p {
-            color: var(--text-light);
-            font-size: 0.9em;
-            line-height: 1.6;
-        }
-        
-        .faq-item {
-            margin: 20px 0;
-            padding: 25px;
-            background: var(--bg-card);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-        
-        .faq-item strong {
-            color: white;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1em;
-            font-weight: 600;
-        }
-        
-        .faq-item p {
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-        
-        .contact-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: white;
-            padding: 50px 30px;
-            text-align: center;
-            margin-top: 80px;
-            border-radius: 12px;
-        }
-        
-        .contact-section h2 {
-            margin-top: 0;
-            color: white;
-            margin-bottom: 25px;
-        }
-        
-        .contact-section p {
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-        
-        .contact-section a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-        }
-        
-        .contact-section a:hover {
-            opacity: 0.8;
-        }
-        
-        .social-links {
-            margin-top: 25px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        @media (max-width: 1024px) {
-            .container {
-                padding: 90px 20px 50px;
-            }
-            
-            h1 {
-                font-size: 2.5em;
-            }
-            
-            h2 {
-                font-size: 1.8em;
-                margin-top: 60px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-content {
-                padding: 0 15px;
-            }
-            
-            .nav-logo {
-                font-size: 1.2em;
-            }
-            
-            .nav-links {
-                gap: 8px;
-            }
-            
-            .nav-links a {
-                padding: 6px 12px;
-                font-size: 0.85em;
-            }
-            
-            .container {
-                padding: 80px 15px 40px;
-            }
-            
-            .hero-section {
-                padding: 40px 15px 30px;
-            }
-            
-            .hero-logo {
-                font-size: 3.5em;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .subtitle {
-                font-size: 1em;
-            }
-            
-            h2 {
-                font-size: 1.6em;
-                margin-top: 50px;
-            }
-            
-            table {
-                font-size: 0.85em;
-                display: block;
-                overflow-x: auto;
-            }
-            
-            th, td {
-                padding: 12px 10px;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .process-steps {
-                padding: 20px;
-            }
-            
-            .feature-card {
-                padding: 25px;
-            }
-            
-            .faq-item {
-                padding: 20px;
-            }
-            
-            .contact-section {
-                padding: 40px 20px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-links a {
-                padding: 5px 10px;
-                font-size: 0.8em;
-            }
-            
-            .container {
-                padding: 75px 12px 30px;
-            }
-            
-            .hero-logo {
-                font-size: 3em;
-            }
-            
-            h1 {
-                font-size: 1.75em;
-            }
-            
-            .subtitle {
-                font-size: 0.95em;
-            }
-            
-            h2 {
-                font-size: 1.4em;
-                margin-top: 40px;
-            }
-            
-            .process-steps {
-                padding: 18px;
-            }
-            
-            .process-steps li {
-                font-size: 0.9em;
-            }
-            
-            .feature-card {
-                padding: 20px;
-            }
-            
-            .faq-item {
-                padding: 18px;
-            }
-            
-            .contact-section {
-                padding: 35px 18px;
-            }
-            
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-        
-        @media (max-width: 375px) {
-            h1 {
-                font-size: 1.6em;
-            }
-            
-            h2 {
-                font-size: 1.3em;
-            }
-            
-            table {
-                font-size: 0.8em;
-            }
-            
-            .price {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="promo-banner" id="promoBanner">
-        🎄 <strong>CHRISTMAS LAUNCH OFFER:</strong> First rendering FREE with code <strong>CHRISTMAS2025</strong> 🎁
+        🎄 <strong>CHRISTMAS LAUNCH OFFER</strong>: First rendering FREE with code <strong>CHRISTMAS2025</strong> 🎁
     </div>
     <nav class="nav">
         <div class="nav-content">
-            <a href="../index.html" class="nav-logo">🎬 ChromaEnhance</a>
+            <a href="../index.html" class="nav-logo">
+                <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="24" height="24" style="display: inline-block; vertical-align: middle;"></object>
+                ChromaEnhance
+            </a>
             <div class="nav-links">
                 <a href="../index.html">🏠 Home</a>
                 <a href="fr.html">🇫🇷 Français</a>
@@ -531,7 +26,9 @@
 
     <div class="container">
         <section class="hero-section">
-            <div class="hero-logo">🎬</div>
+            <div class="hero-logo">
+                <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="128" height="128"></object>
+            </div>
             <h1>ChromaEnhance</h1>
             <p class="subtitle">Professional optimization of your videos and images<br>Fast, precise service compliant with professional standards</p>
         </section>
@@ -653,37 +150,133 @@
             <p>Final files are delivered via <strong>secure Payhip link</strong>, unique for each order. Your source files remain confidential and are never shared. Each render is stored temporarily then deleted after delivery to guarantee confidentiality.</p>
         </section>
 
-        <section class="section">
-            <h2>❓ FAQ</h2>
-            <div class="faq-item">
-                <strong>Can I edit the video or image myself after processing?</strong>
-                <p>No. Only the final rendered files are delivered.</p>
-            </div>
+        <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
             
-            <div class="faq-item">
-                <strong>Do you provide the project files?</strong>
-                <p>No. Source projects are not included, only final renders.</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>What formats should I send you?</strong>
-                <p>Videos: MP4 / MOV — Images: JPG / PNG / TIFF</p>
-            </div>
-            
-            <div class="faq-item">
-                <strong>Why these prices?</strong>
-                <p>Prices reflect the expertise, processing time, and use of latest generation licensed professional tools.</p>
-            </div>
-        </section>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What file formats do you accept?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept MP4 and MOV for videos, and JPG, PNG, and TIFF for images.</p>
+                    </div>
+                </div>
 
-        <section class="contact-section">
-            <h2>📧 Contact</h2>
-            <p><strong>Email:</strong> <a href="mailto:chroma.enhance@outlook.com">chroma.enhance@outlook.com</a></p>
-            <div class="social-links">
-                <a href="http://instagram.com/chromaenhance" target="_blank">📸 Instagram: @chromaenhance</a>
-                <a href="https://www.tiktok.com/@chromaenhance" target="_blank">🎵 TikTok: @chromaenhance</a>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does processing take?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Videos: 2-3 business days. Images: 24-48 hours. We also offer expedited processing for urgent projects.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you provide source files?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, we only deliver final rendered files. Source project files are not included.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is my content kept confidential?</span>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. All files are stored temporarily and deleted after delivery. Your content is never shared.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+        <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">Ready to enhance your content? Contact us today</p>
+            
+            <div class="contact-info">
+                <a href="mailto:chroma.enhance@outlook.com" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M3 7L12 13L21 7" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>chroma.enhance@outlook.com</span>
+                </a>
+                
+                <a href="https://instagram.com/chromaenhance" target="_blank" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="18" cy="6" r="1" fill="currentColor"/>
+                    </svg>
+                    <span>@chromaenhance</span>
+                </a>
+                
+                <a href="https://www.tiktok.com/@chromaenhance" target="_blank" class="contact-card">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 10.5V8.8C17.6 8.8 16.3 8.3 15.3 7.5V15.5C15.3 18.5 12.8 21 9.8 21C6.8 21 4.3 18.5 4.3 15.5C4.3 12.5 6.8 10 9.8 10V12.3C8.1 12.3 6.6 13.8 6.6 15.5C6.6 17.2 8.1 18.7 9.8 18.7C11.5 18.7 13 17.2 13 15.5V3H15.3C15.3 3.9 15.6 4.7 16.2 5.3C16.8 5.9 17.6 6.2 18.5 6.2V8.5C18.7 8.5 18.8 8.5 19 10.5Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>@chromaenhance</span>
+                </a>
+            </div>
+        </div>
+    </section>
     </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="128" height="128"></object>
+                    </div>
+                    <span>ChromaEnhance</span>
+                    <p>Professional video and image processing service</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <a href="#services">Color Correction</a>
+                        <a href="#services">AI Upscaling</a>
+                        <a href="#pricing">Pricing</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Documentation</h4>
+                        <a href="en.html">English</a>
+                        <a href="fr.html">Français</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#faq">FAQ</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 ChromaEnhance. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
 </body>
 </html>
