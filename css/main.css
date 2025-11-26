@@ -172,22 +172,30 @@ section {
 }
 
 #color-animation {
-    margin-left: -18px;
-    margin-top: 7px;
+    
 }
 
 #ai-animation {
-    margin-left: 0px;
-    margin-top: 4px;
+
 }
 
 #fast-animation {
-    margin-left: -20px;
 }
 
-.service-icon svg {
-    display: block;
+.service-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* éviter débordements */
 }
+
+.service-icon > div {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 
 .service-card h3 {
     font-size: 1.5em;
