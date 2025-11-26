@@ -34,7 +34,6 @@ body {
     padding: 0 20px;
 }
 
-/* Hero Section */
 .hero {
     min-height: 90vh;
     display: flex;
@@ -109,7 +108,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Section Styles */
 section {
     padding: 80px 0;
 }
@@ -129,7 +127,6 @@ section {
     margin-bottom: 60px;
 }
 
-/* Services */
 .services {
     background: var(--bg-dark);
 }
@@ -155,43 +152,35 @@ section {
 }
 
 .service-icon {
-    margin-bottom: 20px;
-    width: 100%;
+    width: 64px;
     height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.service-icon > div {
+    height: 100%;
+    width: auto;
     display: flex;
     align-items: center;
     justify-content: flex-start;
 }
 
-.service-icon svg,
-.service-icon div {
-    width: 48px;
-    height: 48px;
-    margin: 0;
-    padding: 0;
-}
-
-.service-icon {
-    width: 64px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden; /* éviter débordements */
-}
-
-.service-icon > div {
-    width: 100% !important;
-    height: 100% !important;
-}
-
 .service-icon svg {
-    width: 100% !important;
-    height: 100% !important;
     display: block !important;
-    margin: 0 auto !important;
+    height: 100% !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
+#color-animation,
+#ai-animation,
+#fast-animation {
+    margin: 0 !important;
+}
 
 .service-card h3 {
     font-size: 1.5em;
@@ -204,7 +193,6 @@ section {
     line-height: 1.6;
 }
 
-/* Pricing */
 .pricing {
     background: var(--bg-dark);
 }
@@ -332,7 +320,6 @@ section {
     font-style: italic;
 }
 
-/* FAQ */
 .faq {
     background: var(--bg-dark);
 }
@@ -438,8 +425,6 @@ section {
     font-weight: 500;
 }
 
-/* Ajouter dans nav.css après .nav-links a:hover::after */
-
 .payhip-btn {
     display: flex !important;
     align-items: center;
@@ -478,7 +463,6 @@ section {
     pointer-events: none;
 }
 
-/* Footer */
 .footer {
     background: var(--bg-card);
     padding: 60px 0 30px;
