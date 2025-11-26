@@ -171,17 +171,6 @@ section {
     padding: 0;
 }
 
-#color-animation {
-    
-}
-
-#ai-animation {
-
-}
-
-#fast-animation {
-}
-
 .service-icon {
     width: 64px;
     height: 64px;
@@ -194,6 +183,13 @@ section {
 .service-icon > div {
     width: 100% !important;
     height: 100% !important;
+}
+
+.service-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    margin: 0 auto !important;
 }
 
 
