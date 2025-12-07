@@ -2,31 +2,40 @@
 // PROMO BANNER - Close button handler + dynamic top offset adjustment
 // ============================================================================
 
-const promoBanner = document.getElementById('promoBanner');
-const promoClose = promoBanner ? promoBanner.querySelector('.close-banner') : null;
-const navElement = document.querySelector('.navbar') || document.querySelector('.nav');
-const heroElement = document.querySelector('.hero') || document.querySelector('.hero-section');
-
-if (promoClose) {
-    promoClose.addEventListener('click', () => {
-        promoBanner.style.display = 'none';
-        
-        // Adjust navbar top position
-        if (navElement) {
-            navElement.style.top = '0';
-        }
-        
-        // Adjust hero/hero-section top padding
-        if (heroElement) {
-            const computedPadding = window.getComputedStyle(heroElement).paddingTop;
-            const match = computedPadding.match(/(\d+)px/);
-            if (match) {
-                const currentPadding = parseInt(match[1], 10);
-                heroElement.style.paddingTop = Math.max(0, currentPadding - 44) + 'px';
+document.addEventListener('DOMContentLoaded', () => {
+    const promoBanner = document.getElementById('promoBanner');
+    const promoClose = promoBanner ? promoBanner.querySelector('.close-banner') : null;
+    
+    if (promoClose) {
+        promoClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Hide banner
+            if (promoBanner) {
+                promoBanner.style.display = 'none';
             }
-        }
-    });
-}
+            
+            // Adjust navbar top position
+            const navElement = document.querySelector('.navbar') || document.querySelector('.nav');
+            if (navElement) {
+                navElement.style.top = '0 !important';
+            }
+            
+            // Adjust hero/hero-section top padding
+            const heroElement = document.querySelector('.hero') || document.querySelector('.hero-section');
+            if (heroElement) {
+                const computedPadding = window.getComputedStyle(heroElement).paddingTop;
+                const match = computedPadding.match(/(\d+)px/);
+                if (match) {
+                    const currentPadding = parseInt(match[1], 10);
+                    const newPadding = Math.max(0, currentPadding - 44);
+                    heroElement.style.paddingTop = newPadding + 'px !important';
+                }
+            }
+        });
+    }
+});
 
 // ============================================================================
 // NAVBAR SCROLL EFFECT - Add 'scrolled' class for visual feedback
