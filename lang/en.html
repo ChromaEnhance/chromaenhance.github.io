@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChromaEnhance - Video & Image Processing</title>
 
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="promo-banner" id="promoBanner">
         🎄 <strong>CHRISTMAS LAUNCH OFFER</strong>: First rendering FREE with code <strong>CHRISTMAS2025</strong> 🎁
+        <button class="close-banner" aria-label="Close banner">&times;</button>
     </div>
     <nav class="nav">
         <div class="nav-content">
@@ -17,6 +21,11 @@
                 <object type="image/svg+xml" data="../assets/logos/ChromaEnhance_Christmas.svg" width="24" height="24" style="display: inline-block; vertical-align: middle;"></object>
                 ChromaEnhance
             </a>
+            <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <div class="nav-links">
                 <a href="../index.html">Home</a>
                 <a href="fr.html">Français</a>
@@ -60,69 +69,132 @@
             </ol>
         </section>
 
-        <section class="section">
-            <h2>💰 Video Pricing</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Duration</th>
-                        <th>CC (Color Correction)</th>
-                        <th>CC + Upscale</th>
-                        <th>Details</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>0 – 35 seconds</td>
-                        <td class="price">€3.99</td>
-                        <td class="price">€5.99</td>
-                        <td>Ideal for short clips and social media content</td>
-                    </tr>
-                    <tr>
-                        <td>35 – 60 seconds</td>
-                        <td class="price">€8.99</td>
-                        <td class="price">€10.99</td>
-                        <td>Suitable for edits and medium formats</td>
-                    </tr>
-                    <tr>
-                        <td>60 seconds and +</td>
-                        <td class="price">Upon quote</td>
-                        <td class="price">Upon quote</td>
-                        <td>Adapted for long and customized projects</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <section id="pricing" class="pricing">
+            <div class="container">
+                <h2 class="section-title">Pricing</h2>
+                <p class="section-subtitle">Transparent pricing for professional results</p>
 
-        <section class="section">
-            <h2>🖼️ Image Pricing</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Processing Type</th>
-                        <th>1 image</th>
-                        <th>5-image pack</th>
-                        <th>10-image pack</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>CC</strong> (CC only)</td>
-                        <td class="price">€0.50</td>
-                        <td class="price">€2.99</td>
-                        <td class="price">€6.99</td>
-                        <td>Color correction and basic enhancement</td>
-                    </tr>
-                    <tr>
-                        <td><strong>CC + Upscale</strong></td>
-                        <td class="price">€1.99</td>
-                        <td class="price">€4.99</td>
-                        <td class="price">€8.99</td>
-                        <td>Advanced optimization: sharpness, upscale, noise reduction</td>
-                    </tr>
-                </tbody>
-            </table>
+                <div class="pricing-tabs">
+                    <button class="tab-btn active" data-tab="video">Video Processing</button>
+                    <button class="tab-btn" data-tab="image">Image Processing</button>
+                </div>
+
+                <div class="pricing-content active" data-content="video">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Short Form</h3>
+                                <p class="pricing-duration">0 - 35 seconds</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">€3.99</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">€5.99</span>
+                                </div>
+                            </div>
+                            <p class="pricing-note">Perfect for social media content</p>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="badge">Most Popular</div>
+                            <div class="pricing-header">
+                                <h3>Medium Form</h3>
+                                <p class="pricing-duration">35 - 60 seconds</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">€8.99</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">€10.99</span>
+                                </div>
+                            </div>
+                            <p class="pricing-note">Ideal for YouTube & Instagram</p>
+                        </div>
+
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Long Form</h3>
+                                <p class="pricing-duration">60+ seconds</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">On quote</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">On quote</span>
+                                </div>
+
+                            </div>
+                            <p class="pricing-note">Custom quote available</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-content" data-content="image">
+                    <div class="pricing-grid">
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Single Image</h3>
+                                <p class="pricing-duration">1 image</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">€0.50</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">€1.99</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-card featured">
+                            <div class="badge">Best Value</div>
+                            <div class="pricing-header">
+                                <h3>Small Pack</h3>
+                                <p class="pricing-duration">5 images</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">€2.99</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">€4.99</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pricing-card">
+                            <div class="pricing-header">
+                                <h3>Large Pack</h3>
+                                <p class="pricing-duration">10 images</p>
+                            </div>
+                            <div class="pricing-body">
+                                <div class="price-item">
+                                    <span class="price-label">Color Correction</span>
+                                    <span class="price">€6.99</span>
+                                </div>
+                                <div class="price-item">
+                                    <span class="price-label">CC + Upscale</span>
+                                    <span class="price">€8.99</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section class="section">
