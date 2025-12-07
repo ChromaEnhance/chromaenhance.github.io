@@ -105,6 +105,58 @@ body {
     align-items: center;
 }
 
+/* Mobile menu toggle (keeps parity with main site nav CSS) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: white;
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 65px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 65px);
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 0;
+        padding: 30px 0;
+        transition: left 0.3s;
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links a {
+        width: 100%;
+        padding: 20px 30px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+}
+
 .nav-links a {
     color: var(--text-light);
     text-decoration: none;
@@ -123,12 +175,15 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 100px 20px 60px;
+    /* Reduce excessive top padding to match main site layout */
+    padding: 0 20px;
 }
 
 .hero-section {
     text-align: center;
-    padding: 60px 20px 40px;
+    /* Match main site's hero spacing (120px) + promo banner (44px) = 164px
+       JS will subtract 44px when banner is closed, leaving 120px */
+    padding: 164px 20px 40px;
 }
 
 .hero-logo {
@@ -155,17 +210,27 @@ h1 {
     margin-right: auto;
 }
 
+/* Keep parity with main site's naming: section-subtitle used in root pages */
+.section-subtitle {
+    font-size: 1.1em;
+    color: var(--text-gray);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 h2 {
     color: white;
-    margin-top: 80px;
-    margin-bottom: 30px;
+    /* Reduce top margin to avoid large gaps between sections */
+    margin-top: 36px;
+    margin-bottom: 24px;
     font-size: 2em;
     font-weight: 600;
     text-align: center;
 }
 
 .section {
-    margin: 60px 0;
+    /* Slightly tighter vertical rhythm to match main site */
+    margin: 36px 0;
 }
 
 .section > p {
