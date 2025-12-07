@@ -16,21 +16,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 promoBanner.style.display = 'none';
             }
             
-            // Adjust navbar top position
+            // Adjust navbar top position and ensure it stays above content
             const navElement = document.querySelector('.navbar') || document.querySelector('.nav');
             if (navElement) {
-                navElement.style.top = '0 !important';
+                // Use a valid inline value (no '!important') and ensure higher stacking
+                navElement.style.top = '0px';
+                navElement.style.zIndex = '1002';
             }
             
             // Adjust hero/hero-section top padding
             const heroElement = document.querySelector('.hero') || document.querySelector('.hero-section');
             if (heroElement) {
                 const computedPadding = window.getComputedStyle(heroElement).paddingTop;
-                const match = computedPadding.match(/(\d+)px/);
+                const match = computedPadding.match(/([\d.]+)px/);
                 if (match) {
-                    const currentPadding = parseInt(match[1], 10);
+                    const currentPadding = parseFloat(match[1]);
                     const newPadding = Math.max(0, currentPadding - 44);
-                    heroElement.style.paddingTop = newPadding + 'px !important';
+                    heroElement.style.paddingTop = newPadding + 'px';
                 }
             }
         });
