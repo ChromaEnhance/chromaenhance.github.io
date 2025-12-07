@@ -1,6 +1,41 @@
-// Navbar scroll effect
+// ============================================================================
+// PROMO BANNER - Close button handler + dynamic top offset adjustment
+// ============================================================================
+
+const promoBanner = document.getElementById('promoBanner');
+const promoClose = promoBanner ? promoBanner.querySelector('.close-banner') : null;
+const navElement = document.querySelector('.navbar') || document.querySelector('.nav');
+const heroElement = document.querySelector('.hero') || document.querySelector('.hero-section');
+
+if (promoClose) {
+    promoClose.addEventListener('click', () => {
+        promoBanner.style.display = 'none';
+        
+        // Adjust navbar top position
+        if (navElement) {
+            navElement.style.top = '0';
+        }
+        
+        // Adjust hero/hero-section top padding
+        if (heroElement) {
+            const computedPadding = window.getComputedStyle(heroElement).paddingTop;
+            const match = computedPadding.match(/(\d+)px/);
+            if (match) {
+                const currentPadding = parseInt(match[1], 10);
+                heroElement.style.paddingTop = Math.max(0, currentPadding - 44) + 'px';
+            }
+        }
+    });
+}
+
+// ============================================================================
+// NAVBAR SCROLL EFFECT - Add 'scrolled' class for visual feedback
+// ============================================================================
+
 window.addEventListener('scroll', () => {
-    const navbar = document.querySelector('.navbar');
+    const navbar = document.querySelector('.navbar') || document.querySelector('.nav');
+    if (!navbar) return;
+    
     if (window.scrollY > 50) {
         navbar.classList.add('scrolled');
     } else {
@@ -8,31 +43,48 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu toggle
+// ============================================================================
+// MOBILE MENU TOGGLE - Hamburger button + accessibility
+// ============================================================================
+
 const menuToggle = document.querySelector('.menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
+if (menuToggle && navLinks) {
+    menuToggle.setAttribute('aria-expanded', 'false');
+    
+    // Toggle menu on button click
+    menuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = navLinks.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
     });
-
+    
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
         });
     });
-
+    
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-            navLinks.classList.remove('active');
+        try {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            }
+        } catch (err) {
+            // Defensive: ignore errors if elements are removed
         }
     });
 }
 
-// Pricing tabs
+// ============================================================================
+// PRICING TABS - Switch between Video/Image pricing sections
+// ============================================================================
+
 const tabBtns = document.querySelectorAll('.tab-btn');
 const pricingContents = document.querySelectorAll('.pricing-content');
 
@@ -46,16 +98,22 @@ tabBtns.forEach(btn => {
         
         // Add active class to clicked button and corresponding content
         btn.classList.add('active');
-        document.querySelector(`[data-content="${targetTab}"]`).classList.add('active');
+        const targetContent = document.querySelector(`[data-content="${targetTab}"]`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
     });
 });
 
-// FAQ accordion
+// ============================================================================
+// FAQ ACCORDION - Toggle FAQ items (one open at a time)
+// ============================================================================
+
 const faqQuestions = document.querySelectorAll('.faq-question');
 
 faqQuestions.forEach(question => {
     question.addEventListener('click', () => {
-        const faqItem = question.parentElement;
+        const faqItem = question.closest('.faq-item');
         const isActive = faqItem.classList.contains('active');
         
         // Close all FAQ items
@@ -70,13 +128,18 @@ faqQuestions.forEach(question => {
     });
 });
 
-// Smooth scroll for anchor links
+// ============================================================================
+// SMOOTH SCROLL - Anchor links with offset for fixed nav
+// ============================================================================
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
-            const offsetTop = target.offsetTop - 80;
+            const offsetTop = target.offsetTop - 100; // Offset for fixed navbar
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -85,7 +148,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Intersection Observer for animations
+// ============================================================================
+// INTERSECTION OBSERVER - Fade-in animations on scroll
+// ============================================================================
+
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -100,8 +166,13 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-document.querySelectorAll('.service-card, .pricing-card, .faq-item, .contact-card').forEach(el => {
+// Observe elements for animation (supports both main site and language pages)
+const elementsToObserve = document.querySelectorAll(
+    '.service-card, .feature-card, .pricing-card, .faq-item, .contact-card, ' +
+    '.hero-logo, .pricing-header, .process-steps, .important, .section-title'
+);
+
+elementsToObserve.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
