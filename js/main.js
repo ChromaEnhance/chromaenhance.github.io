@@ -6,36 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const promoBanner = document.getElementById('promoBanner');
     const promoClose = promoBanner ? promoBanner.querySelector('.close-banner') : null;
     
-    // Store the actual banner height for accurate calculations
-    let actualBannerHeight = 0;
-    
-    // Helper to update CSS var with banner height so navbar can be positioned exactly
-    function updateBannerHeight() {
-        if (promoBanner && window.getComputedStyle(promoBanner).display !== 'none') {
-            const h = promoBanner.offsetHeight;
-            actualBannerHeight = h; // Store actual height
-            document.documentElement.style.setProperty('--banner-height', h + 'px');
-            document.body.classList.remove('banner-closed');
-        } else {
-            document.documentElement.style.setProperty('--banner-height', '0px');
-            document.body.classList.add('banner-closed');
-        }
-    }
-
-    // Initial sync and on resize (banner may wrap on small screens)
-    updateBannerHeight();
-    window.addEventListener('resize', updateBannerHeight);
-    
     if (promoClose) {
         promoClose.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             
-            // Hide banner and mark body so CSS can respond; update CSS var
+            // Hide banner
             if (promoBanner) {
                 promoBanner.style.display = 'none';
             }
-            updateBannerHeight();
             
             // Adjust navbar top position and ensure it stays above content
             const navElement = document.querySelector('.navbar') || document.querySelector('.nav');
@@ -45,28 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 navElement.style.zIndex = '1002';
             }
             
-            // Adjust hero/hero-section top padding using the ACTUAL banner height
+            // Adjust hero/hero-section top padding
             const heroElement = document.querySelector('.hero') || document.querySelector('.hero-section');
             if (heroElement) {
                 const computedPadding = window.getComputedStyle(heroElement).paddingTop;
                 const match = computedPadding.match(/([\d.]+)px/);
                 if (match) {
                     const currentPadding = parseFloat(match[1]);
-                    // Use the actual banner height instead of hardcoded 44px
-                    const newPadding = Math.max(0, currentPadding - actualBannerHeight);
+                    const newPadding = Math.max(0, currentPadding - 44);
                     heroElement.style.paddingTop = newPadding + 'px';
                 }
             }
         });
-
-        // Optional: allow reopening the banner if present (for dev/testing)
-        const promoRestore = document.querySelector('.promo-banner[data-restorable]');
-        if (promoRestore) {
-            promoRestore.addEventListener('click', () => {
-                promoRestore.style.display = '';
-                updateBannerHeight();
-            });
-        }
     }
 });
 
