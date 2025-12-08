@@ -34,18 +34,26 @@ body {
     padding: 0 20px;
 }
 
+/* ============================================================================
+   HERO SECTION
+   ============================================================================ */
 .hero {
     min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 120px 20px 60px;
+    padding: 164px 20px 60px;
     background: linear-gradient(180deg, rgba(102, 118, 255, 0.05) 0%, transparent 100%);
+}
+
+body.banner-closed .hero {
+    padding-top: 120px;
 }
 
 .hero-content {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero h1 {
@@ -55,6 +63,7 @@ body {
     margin-bottom: 20px;
     letter-spacing: -1px;
     line-height: 1.2;
+    text-align: center;
 }
 
 .hero-subtitle {
@@ -62,18 +71,24 @@ body {
     color: var(--text-gray);
     margin-bottom: 40px;
     line-height: 1.6;
+    text-align: center;
 }
 
+/* ============================================================================
+   HERO BUTTONS - FIXED ALIGNMENT
+   ============================================================================ */
 .hero-buttons {
     display: flex;
     gap: 20px;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
 }
 
 .btn {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 14px 32px;
     border-radius: 10px;
@@ -83,6 +98,10 @@ body {
     transition: all 0.3s;
     border: none;
     cursor: pointer;
+    height: 52px;
+    min-width: 180px;
+    box-sizing: border-box;
+    line-height: 1;
 }
 
 .btn-primary {
@@ -100,6 +119,9 @@ body {
     background: var(--bg-card);
     color: var(--text-light);
     border: 1px solid var(--border-color);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .btn-secondary:hover {
@@ -108,6 +130,15 @@ body {
     transform: translateY(-2px);
 }
 
+.btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* ============================================================================
+   SECTIONS
+   ============================================================================ */
 section {
     padding: 80px 0;
 }
@@ -127,6 +158,9 @@ section {
     margin-bottom: 60px;
 }
 
+/* ============================================================================
+   SERVICES
+   ============================================================================ */
 .services {
     background: var(--bg-dark);
 }
@@ -143,6 +177,7 @@ section {
     border-radius: 16px;
     border: 1px solid var(--border-color);
     transition: all 0.3s;
+    text-align: center;
 }
 
 .service-card:hover {
@@ -152,12 +187,12 @@ section {
 }
 
 .service-icon {
-    width: 64px;
+    width: 100%;
     height: 64px;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    overflow: hidden;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
 .service-icon > div {
@@ -165,7 +200,7 @@ section {
     width: auto;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 .service-icon svg {
@@ -174,12 +209,6 @@ section {
     width: auto;
     margin: 0;
     padding: 0;
-}
-
-#color-animation,
-#ai-animation,
-#fast-animation {
-    margin: 0 !important;
 }
 
 .service-card h3 {
@@ -193,6 +222,9 @@ section {
     line-height: 1.6;
 }
 
+/* ============================================================================
+   PRICING
+   ============================================================================ */
 .pricing {
     background: var(--bg-dark);
 }
@@ -320,6 +352,9 @@ section {
     font-style: italic;
 }
 
+/* ============================================================================
+   FAQ
+   ============================================================================ */
 .faq {
     background: var(--bg-dark);
 }
@@ -382,6 +417,9 @@ section {
     line-height: 1.6;
 }
 
+/* ============================================================================
+   CONTACT
+   ============================================================================ */
 .contact {
     background: var(--bg-dark);
 }
@@ -425,6 +463,9 @@ section {
     font-weight: 500;
 }
 
+/* ============================================================================
+   PAYHIP BUTTON
+   ============================================================================ */
 .payhip-btn {
     display: flex !important;
     align-items: center;
@@ -450,19 +491,13 @@ section {
     color: white;
 }
 
-@media (max-width: 768px) {
-    .payhip-btn {
-        margin-left: 0;
-        width: auto !important;
-        align-self: center;
-        padding: 12px 20px !important;
-    }
-}
-
 .payhip-btn object {
     pointer-events: none;
 }
 
+/* ============================================================================
+   FOOTER
+   ============================================================================ */
 .footer {
     background: var(--bg-card);
     padding: 60px 0 30px;
@@ -521,4 +556,83 @@ section {
     text-align: center;
     color: var(--text-gray);
     font-size: 0.9em;
+}
+
+/* ============================================================================
+   MOBILE CENTERING FIXES
+   ============================================================================ */
+@media (max-width: 768px) {
+    /* Force centering for mobile */
+    body, .container {
+        text-align: center;
+    }
+    
+    /* Hero section mobile centering */
+    .hero {
+        text-align: center !important;
+        justify-content: flex-start !important;
+        padding-top: 140px !important;
+        padding-bottom: 40px !important;
+    }
+    
+    .hero-content {
+        text-align: center !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    
+    .hero h1,
+    .hero-subtitle {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: block !important;
+    }
+    
+    /* Hero buttons mobile */
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .btn {
+        width: 100% !important;
+        max-width: 300px !important;
+        margin: 0 auto !important;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .btn-secondary {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    /* Services centering */
+    .service-card {
+        text-align: center !important;
+    }
+    
+    .service-icon {
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .service-icon > div {
+        margin: 0 auto !important;
+    }
+    
+    /* Payhip button mobile */
+    .payhip-btn {
+        margin-left: 0 !important;
+        width: auto !important;
+        align-self: center !important;
+        padding: 12px 20px !important;
+    }
 }

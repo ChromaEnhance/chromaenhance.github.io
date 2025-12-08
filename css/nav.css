@@ -1,14 +1,46 @@
+.root-nav-vars {
+    /* helper holder to keep editor-friendly context - not used directly */
+}
+
+:root {
+    --banner-height: 44px; /* height reserved for promo banner */
+    --nav-height: 65px;    /* default navbar height (desktop) */
+}
+
 .navbar {
     position: fixed;
-    top: 0;
+    top: var(--banner-height); /* sit under the banner when present */
     left: 0;
     width: 100%;
     background: rgba(10, 10, 15, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     padding: 15px 0;
-    z-index: 1000;
+    z-index: 1002; /* ensure navbar stays above page content */
     transition: all 0.3s;
+}
+
+/* When banner is visible, explicitly position the navbar below it */
+body.banner-closed .navbar {
+    top: 0px;
+}
+
+/* When banner is visible, ensure mobile nav-links sit below banner+navbar
+   (moved into mobile media query to avoid affecting desktop layout) */
+
+body.banner-closed .hero {
+    padding-top: 120px; /* match main site's hero spacing when no banner */
+}
+
+/* Also support language pages that use .hero-section */
+body.banner-closed .hero-section {
+    padding-top: 120px;
+}
+
+/* Ensure mobile nav menu moves up when the banner is closed */
+body.banner-closed .nav-links {
+    top: var(--nav-height);
+    height: calc(100vh - var(--nav-height));
 }
 
 .navbar.scrolled {
@@ -79,11 +111,15 @@
     color: white;
     text-align: center;
     padding: 12px 20px;
+    box-sizing: border-box;
+    padding-right: 40px; /* tighter right padding for mobile */
+    white-space: normal;
+    word-break: break-word;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1001;
+    z-index: 1003;
     animation: slideDown 0.5s ease-out;
     font-size: 0.95em;
 }
@@ -100,7 +136,7 @@
 
 .promo-banner .close-banner {
     position: absolute;
-    right: 20px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     background: none;
@@ -119,10 +155,7 @@
     opacity: 1;
 }
 
-/* Ajuster la navbar pour être sous la bannière */
-.navbar {
-    top: 44px; /* Hauteur de la bannière */
-}
+/* No duplicate navbar top rule here — top is handled via CSS variable above */
 
 /* Ajuster le hero pour compenser */
 .hero {
@@ -131,12 +164,30 @@
 
 @media (max-width: 768px) {
     .promo-banner {
-        font-size: 0.85em;
-        padding: 10px 40px 10px 20px;
+        font-size: 0.48em;
+        padding: 2px 26px 2px 2px;
+        line-height: 1;
+        min-height: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .promo-banner .close-banner {
+        right: 4px;
+        width: 20px;
+        height: 20px;
+        font-size: 18px;
     }
     
     .nav-links {
-        top: 109px; /* 65px navbar + 44px bannière */
+        top: calc(var(--nav-height) + var(--banner-height)); /* navbar + banner */
+    }
+
+    /* Ensure nav-links sizing respects banner visibility only on mobile */
+    body:not(.banner-closed) .nav-links {
+        top: calc(var(--nav-height) + var(--banner-height));
+        height: calc(100vh - var(--nav-height) - var(--banner-height));
     }
 }
 
@@ -162,13 +213,12 @@
     .menu-toggle {
         display: flex;
     }
-
     .nav-links {
         position: fixed;
-        top: 65px;
+        top: calc(var(--nav-height) + var(--banner-height));
         left: -100%;
         width: 100%;
-        height: calc(100vh - 65px);
+        height: calc(100vh - var(--nav-height) - var(--banner-height));
         background: rgba(10, 10, 15, 0.98);
         backdrop-filter: blur(10px);
         flex-direction: column;
@@ -189,5 +239,36 @@
 
     .nav-links a::after {
         display: none;
+    }
+}
+
+/* Responsive logo sizing and final-mobile adjustments */
+.navbar .logo object,
+.nav-logo object {
+    width: 64px;
+    height: 64px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .navbar .logo object,
+    .nav-logo object {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-logo object {
+        width: 120px;
+        height: 120px;
+    }
+
+    /* ensure banner doesn't visually cover logo/text: navbar sits below banner */
+    body:not(.banner-closed) .navbar {
+        top: var(--banner-height);
+    }
+
+    body:not(.banner-closed) .nav-links {
+        top: calc(var(--nav-height) + var(--banner-height));
+        height: calc(100vh - var(--nav-height) - var(--banner-height));
     }
 }
