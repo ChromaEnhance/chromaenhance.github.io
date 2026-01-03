@@ -93,7 +93,7 @@ body {
    ============================================================================ */
 .navbar {
     position: fixed;
-    top: var(--banner-height); /* sit under the banner when present */
+    top: 0; /* toujours en haut */
     left: 0;
     width: 100%;
     background: rgba(10, 10, 15, 0.95);
