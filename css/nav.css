@@ -1,46 +1,34 @@
 .root-nav-vars {
-    /* helper holder to keep editor-friendly context - not used directly */
+    /* helper holder to keep editor-friendly context */
 }
 
+/* ===============================
+   VARIABLES GLOBALES
+================================ */
 :root {
-    --banner-height: 44px; /* height reserved for promo banner */
-    --nav-height: 65px;    /* default navbar height (desktop) */
+    --banner-height: 0px;     /* par défaut : pas de bannière */
+    --nav-height: 65px;       /* hauteur navbar desktop */
 }
 
+/* Activer la bannière */
+body.has-banner {
+    --banner-height: 44px;
+}
+
+/* ===============================
+   NAVBAR
+================================ */
 .navbar {
     position: fixed;
-    top: var(--banner-height); /* sit under the banner when present */
+    top: var(--banner-height);
     left: 0;
     width: 100%;
     background: rgba(10, 10, 15, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
     padding: 15px 0;
-    z-index: 1002; /* ensure navbar stays above page content */
-    transition: all 0.3s;
-}
-
-/* When banner is visible, explicitly position the navbar below it */
-body.banner-closed .navbar {
-    top: 0px;
-}
-
-/* When banner is visible, ensure mobile nav-links sit below banner+navbar
-   (moved into mobile media query to avoid affecting desktop layout) */
-
-body.banner-closed .hero {
-    padding-top: 120px; /* match main site's hero spacing when no banner */
-}
-
-/* Also support language pages that use .hero-section */
-body.banner-closed .hero-section {
-    padding-top: 120px;
-}
-
-/* Ensure mobile nav menu moves up when the banner is closed */
-body.banner-closed .nav-links {
-    top: var(--nav-height);
-    height: calc(100vh - var(--nav-height));
+    z-index: 1002;
+    transition: top 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -64,13 +52,16 @@ body.banner-closed .nav-links {
     font-weight: 600;
     color: white;
     text-decoration: none;
-    transition: all 0.3s;
+    transition: color 0.3s;
 }
 
 .navbar .logo:hover {
     color: var(--primary);
 }
 
+/* ===============================
+   NAV LINKS (DESKTOP)
+================================ */
 .nav-links {
     display: flex;
     gap: 30px;
@@ -82,8 +73,8 @@ body.banner-closed .nav-links {
     text-decoration: none;
     font-size: 0.95em;
     font-weight: 500;
-    transition: all 0.3s;
     position: relative;
+    transition: color 0.3s;
 }
 
 .nav-links a::after {
@@ -105,33 +96,32 @@ body.banner-closed .nav-links {
     width: 100%;
 }
 
-/* Promo Banner */
+/* ===============================
+   PROMO BANNER (OPTIONNEL)
+================================ */
 .promo-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--banner-height);
     background: linear-gradient(135deg, #c41e3a 0%, #8b1328 100%);
     color: white;
     text-align: center;
     padding: 12px 20px;
     box-sizing: border-box;
-    padding-right: 40px; /* tighter right padding for mobile */
-    white-space: normal;
-    word-break: break-word;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 1003;
-    animation: slideDown 0.5s ease-out;
     font-size: 0.95em;
+    display: none;
 }
 
-@keyframes slideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
+/* visible seulement si activé */
+body.has-banner .promo-banner {
+    display: block;
 }
 
 .promo-banner strong {
     color: #ffd700;
-    font-weight: 700;
 }
 
 .promo-banner .close-banner {
@@ -145,53 +135,23 @@ body.banner-closed .nav-links {
     font-size: 24px;
     cursor: pointer;
     opacity: 0.7;
-    line-height: 1;
-    padding: 0;
-    width: 30px;
-    height: 30px;
 }
 
 .promo-banner .close-banner:hover {
     opacity: 1;
 }
 
-/* No duplicate navbar top rule here — top is handled via CSS variable above */
-
-/* Ajuster le hero pour compenser */
-.hero {
-    padding-top: 164px; /* 120px + 44px de bannière */
+/* ===============================
+   HERO
+================================ */
+.hero,
+.hero-section {
+    padding-top: calc(var(--nav-height) + var(--banner-height) + 55px);
 }
 
-@media (max-width: 768px) {
-    .promo-banner {
-        font-size: 0.48em;
-        padding: 2px 26px 2px 2px;
-        line-height: 1;
-        min-height: auto;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .promo-banner .close-banner {
-        right: 4px;
-        width: 20px;
-        height: 20px;
-        font-size: 18px;
-    }
-    
-    .nav-links {
-        top: calc(var(--nav-height) + var(--banner-height)); /* navbar + banner */
-    }
-
-    /* Ensure nav-links sizing respects banner visibility only on mobile */
-    body:not(.banner-closed) .nav-links {
-        top: calc(var(--nav-height) + var(--banner-height));
-        height: calc(100vh - var(--nav-height) - var(--banner-height));
-    }
-}
-
-/* Mobile Menu */
+/* ===============================
+   MOBILE
+================================ */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -199,7 +159,6 @@ body.banner-closed .nav-links {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 5px;
 }
 
 .menu-toggle span {
@@ -213,6 +172,7 @@ body.banner-closed .nav-links {
     .menu-toggle {
         display: flex;
     }
+
     .nav-links {
         position: fixed;
         top: calc(var(--nav-height) + var(--banner-height));
@@ -222,7 +182,6 @@ body.banner-closed .nav-links {
         background: rgba(10, 10, 15, 0.98);
         backdrop-filter: blur(10px);
         flex-direction: column;
-        gap: 0;
         padding: 30px 0;
         transition: left 0.3s;
     }
@@ -240,19 +199,23 @@ body.banner-closed .nav-links {
     .nav-links a::after {
         display: none;
     }
+
+    .promo-banner {
+        font-size: 0.7em;
+        padding: 6px 36px 6px 10px;
+    }
 }
 
-/* Responsive logo sizing and final-mobile adjustments */
-.navbar .logo object,
-.nav-logo object {
+/* ===============================
+   LOGO SIZES
+================================ */
+.navbar .logo object {
     width: 64px;
     height: 64px;
-    display: block;
 }
 
 @media (max-width: 768px) {
-    .navbar .logo object,
-    .nav-logo object {
+    .navbar .logo object {
         width: 40px;
         height: 40px;
     }
@@ -260,15 +223,5 @@ body.banner-closed .nav-links {
     .hero-logo object {
         width: 120px;
         height: 120px;
-    }
-
-    /* ensure banner doesn't visually cover logo/text: navbar sits below banner */
-    body:not(.banner-closed) .navbar {
-        top: var(--banner-height);
-    }
-
-    body:not(.banner-closed) .nav-links {
-        top: calc(var(--nav-height) + var(--banner-height));
-        height: calc(100vh - var(--nav-height) - var(--banner-height));
     }
 }
